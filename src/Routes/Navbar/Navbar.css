@@ -1,0 +1,202 @@
+.navbar-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 15%;
+    background-color: black;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.logo-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.navbar-logo-img {
+    width: 70%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+
+
+.navigations-wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    align-self: flex-end;
+}
+
+.link-wrapper {
+    align-self: flex-start;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-out;
+
+}
+
+.nav-link {
+    text-decoration: none;
+    font-family: 'PTSerif-Regular';
+    color: rgb(129, 130, 134);
+    font-size: clamp(1rem, 0.359rem + 1.0256vw, 2rem);
+    cursor: pointer;
+    align-self: flex-start;
+    transition: margin 0.3s ease; /* Add the transition property for margin */
+
+}
+
+.nav-link:hover {
+    color: white;
+    margin-left: 10px;
+}
+
+.navigation-pointer {
+    width: 7px;
+    height: 7px;
+    background-color: rgb(129, 130, 134);
+    /* Set the background color as desired */
+    transform: rotate(45deg);
+    /* Rotate and translate the square */
+
+}
+
+.pointer-wrapper {
+    width: 25px;
+
+}
+
+.language {
+    font-family: 'PTSerif-Regular';
+    color: rgb(129, 130, 134);
+    font-size: clamp(1rem, 0.359rem + 1.0256vw, 2rem);
+    cursor: pointer;
+    transition: margin 0.3s ease; /* Add the transition property for margin */
+
+}
+
+.language:hover {
+    color: white;
+    margin-top: 5px;
+}
+
+.language-and-socials{
+    margin-left: 25%;
+    margin-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    width: fit-content; /* Set the width to fit the content */
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.language-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.slol {
+    margin-right: 15px;
+}
+
+.engl {
+    margin-left: 15px;
+}
+
+.social-icon{
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color:  #818286;
+    transition: transform 0.3s ease; /* Add the transition property for margin */
+
+}
+
+.socials-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon:hover{
+    color:  white;
+    transform: translateY(-5px);
+}
+
+.insta-margin{
+    margin-left: 15px;
+}
+
+.wrapper1{
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.wrapper2{
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.wrapper3{
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.wrapper4{
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.reveal1{
+    opacity: 1;
+}
+
+@media (max-width: 1500px) {
+    .language-and-socials{
+        margin-bottom: 80px;
+       
+    }
+
+    .navbar-logo-img{
+        width: 80%;
+    }
+}
+
+@media (max-width: 1300px) {
+    .language-and-socials{
+        margin-bottom: 40px;
+       
+    }
+
+    .navigations-wrapper{
+        margin-top: 60px;
+    }
+
+    .navbar-logo-img{
+        width: 80%;
+    }
+
+    .navigations-wrapper{
+        width: 90%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .navbar-main{
+        display: none;
+    }
+}
