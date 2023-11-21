@@ -3,6 +3,7 @@ import './Contact.css'
 import { Helmet } from 'react-helmet-async'
 import UserBar from '../UserBar/UserBar'
 import Navbar from '../Navbar/Navbar'
+import ContactDesign from './Components/ContactDesign/ContactDesign'
 
 const Contact = () => {
   return (
@@ -15,6 +16,8 @@ const Contact = () => {
 
       <UserBar/>
       <Navbar/>
+
+      <ContactDesign/>
     </div>
   )
 }

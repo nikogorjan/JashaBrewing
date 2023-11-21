@@ -1,0 +1,22 @@
+.items-main{
+    color: white;
+}
+
+.items-wrapper{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.items-header{
+    color: white;
+}
+
+.items-column{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+

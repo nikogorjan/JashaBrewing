@@ -3,6 +3,7 @@ import './Shop.css';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../Navbar/Navbar';
 import UserBar from '../UserBar/UserBar';
+import ShopItems from './Components/ShopItems';
 
 const Shop = () => {
   return (
@@ -15,7 +16,9 @@ const Shop = () => {
 
       <Navbar/>
       <UserBar/>
+      <ShopItems/>
       
+
 
     </div>
   )

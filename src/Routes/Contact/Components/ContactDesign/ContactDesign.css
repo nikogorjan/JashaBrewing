@@ -1,0 +1,96 @@
+.contact-design-main {
+    width: 85%;
+    margin-left: 15%;
+    margin-top: 100px;
+}
+
+.contact-design-wrapper{
+    display: flex;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease; 
+
+}
+
+.revealContactItem{
+    opacity: 1;
+}
+
+.contact-design-right{
+    width: 50%;
+    height: 100vh;
+}
+
+.contact-design-left{
+    width: 50%;
+}
+
+.contact-info-wrapper{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20%;
+}
+
+.contactheader{
+    color: white;
+    font-family: 'PTSerif-Regular';
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1.2222rem + 1.1111vw, 3rem);
+    margin: 0;
+    margin-top: 32px;
+}
+
+.contact-paragraph{
+    font-family: 'PTSerif-Regular';
+    color: rgb(129, 130, 134);;
+    font-size: clamp(1rem, 0.8148rem + 0.7407vw, 2rem);
+    margin: 0;
+}
+
+.contact-wrapper1{
+    margin-top: 32px;
+}
+
+.contact-wrapper2{
+    margin-top: 32px;
+}
+
+.contact-wrapper3{
+    margin-top: 32px;
+}
+
+@media (max-width: 1000px) {
+    .contact-design-wrapper{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-design-main {
+        width: 100%;
+        margin-top: 100px;
+        margin-left: 0%;
+    }
+
+    .contact-design-right{
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .contact-design-left{
+        width: 100%;
+        margin-bottom: 32px;
+    }
+
+    .contact-info-wrapper{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        
+    }
+
+    .inline-wrapper{
+        display: inline-block;
+    }
+    
+}

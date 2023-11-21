@@ -13,21 +13,28 @@ const Home = () => {
     //fadein animacija
     useEffect(()=>{
 
-        setTimeout(()=>{
-            document.querySelector('.logo-img').classList.add('reveal');
-        },150);
+        const validAge = sessionStorage.getItem('validAge');
+            if (validAge === 'true') {
+                navigate('/Shop');
+            } else {
+                setTimeout(()=>{
+                    document.querySelector('.logo-img').classList.add('reveal');
+                },150);
+        
+                setTimeout(()=>{
+                    document.querySelector('.age-question').classList.add('reveal');
+                },300);
+        
+                setTimeout(()=>{
+                    document.querySelector('.answer-da').classList.add('reveal');
+                },450);
+        
+                setTimeout(()=>{
+                    document.querySelector('.answer-ne').classList.add('reveal');
+                },600);
+            }
 
-        setTimeout(()=>{
-            document.querySelector('.age-question').classList.add('reveal');
-        },300);
-
-        setTimeout(()=>{
-            document.querySelector('.answer-da').classList.add('reveal');
-        },450);
-
-        setTimeout(()=>{
-            document.querySelector('.answer-ne').classList.add('reveal');
-        },600);
+        
 
     },[]);
 
@@ -49,6 +56,8 @@ const Home = () => {
         },0);
 
         setTimeout(()=>{
+            sessionStorage.setItem('validAge', 'true');
+
             setGoShop(true);
         },1450);
 
@@ -59,6 +68,12 @@ const Home = () => {
             navigate('/Shop');
         }
     },[goShop,navigate]);
+
+    const goToYouTubeKids = () => {
+        window.location.href = 'https://www.youtubekids.com/';
+    }
+
+    
 
   return (
     <div className='home-main'>
@@ -72,7 +87,7 @@ const Home = () => {
             <p className='age-question'>{t('greeting')}</p>
             <div className='answers-row'>
                 <p className='answer-da' onClick={goToShop}>{t('yes')}</p>
-                <p className='answer-ne'>{t('no')}</p>
+                <p className='answer-ne' onClick={goToYouTubeKids}>{t('no')}</p>
             </div>
         </div>
     </div>
