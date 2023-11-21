@@ -3,6 +3,7 @@ import './Pub.css'
 import { Helmet } from 'react-helmet-async'
 import Navbar from '../Navbar/Navbar'
 import UserBar from '../UserBar/UserBar'
+import PubDesign from './PubDesign/PubDesign'
 
 const Pub = () => {
   return (
@@ -15,6 +16,8 @@ const Pub = () => {
 
       <UserBar/>
       <Navbar/>
+
+      <PubDesign/>
     </div>
   )
 }

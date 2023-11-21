@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
-const Navbar = () => {
+const NavbarCopy = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation(); // Get the current location
     const navigate = useNavigate();
@@ -82,15 +82,8 @@ const Navbar = () => {
     }
 
     const goToShop = () => {
-        if (location.pathname !== '/Shop') {
-            console.log("go shop")
-            dissapear();
-            setTimeout(() => {
-                window.scrollTo({ top: 0,  });
-                navigate('/Shop');
-
-            }, 1100);
-        }
+        console.log("goshop")
+        navigate('/Shop');
 
     }
  
@@ -178,4 +171,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default NavbarCopy

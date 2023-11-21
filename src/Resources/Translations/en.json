@@ -5,6 +5,39 @@
     "shop": "SHOP",
     "pub": "PUB",
     "brewery": "BREWERY",
-    "contact": "CONTACT"
+    "contact": "CONTACT",
+    "addCart": "ADD TO CART",
+    "pubheader": "Discover Our Cozy Pub",
+    "pubparagraph": "Step into a warm and inviting pub where good times and great memories are made. Our pub is the perfect place to relax with friends, enjoy your favorite drinks, and savor delicious food.",
+    "foodheader": "Delicious Pub Fare",
+    "foodparagraph": "Indulge in a mouthwatering selection of pub classics and modern delights. Our culinary team brings you a diverse menu of flavorful dishes that pair perfectly with your choice of beverages.",
+    "partyheader": "Unforgettable Pub Parties",
+    "partyparagraph": "Join us for unforgettable pub parties and events. From live music nights to themed parties, our pub is the place to celebrate with friends, dance to the beat, and make lasting memories.",
+    "breweryHeader1": "Crafting Quality Brews",
+    "breweryParagraph1": "Discover the art of crafting exceptional brews in our brewery. We take pride in our passion for brewing and our commitment to quality ingredients. Join us for a taste of perfection.",
+    "breweryHeader2": "Brewery Tours and Tastings",
+    "breweryParagraph2": "Experience the heart of our brewery with guided tours and tastings. Learn about our brewing process, explore our facilities, and savor the rich flavors of our brews.",
+    "breweryHeader3": "Celebrating with Friends",
+    "breweryParagraph3": "Our brewery is not just about beer; it's about creating memories with friends. Join us for live music, special events, and unforgettable evenings at the brewery.",
+    "slovenia": "Slovenia",
+    "brewery2": "Brewery",
+    "continue": "Continue shopping.",
+    "checkout": "Proceed to checkout.", 
+    "cart": "SHOPPING CART",
+    "finalprice": "FINAL PRICE",
+    "checkoutButtonText": "PROCEED TO CHECKOUT",
+    "placnik": "PAYER DATA",
+    "phone": "PHONE NUMBER",
+    "name": "NAME",
+    "surname": "SURNAME",
+    "street": "STREET AND HOUSE NUMBER",
+    "country": "COUNTRY",
+    "countryError": "To ship outside Slovenia, please contact us at our email address info@jashabrewing.com or by phone at 031 222 223.",
+    "postnast": "POSTAL CODE",
+    "mesto": "CITY",
+    "email": "E-MAIL"
+
+
+
 
   }

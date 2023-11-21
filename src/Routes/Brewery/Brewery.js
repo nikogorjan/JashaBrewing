@@ -3,6 +3,7 @@ import './Brewery.css'
 import { Helmet } from 'react-helmet-async'
 import UserBar from '../UserBar/UserBar'
 import Navbar from '../Navbar/Navbar'
+import BreweryDesign from './Components/BreweryDesign/BreweryDesign'
 
 const Brewery = () => {
     return (
@@ -15,6 +16,8 @@ const Brewery = () => {
 
             <UserBar />
             <Navbar />
+
+            <BreweryDesign/>
         </div>
     )
 }

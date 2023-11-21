@@ -1,0 +1,152 @@
+.checkout-wrapper {
+    width: 85%;
+    margin-left: 15%;
+    margin-top: 148px;
+}
+
+.checkout-divider {
+    display: flex;
+}
+
+.checkout-left {
+    width: 60%;
+    height: 100%;
+
+}
+
+.checkout-right {
+    width: 40%;
+    height: 100%;
+
+
+}
+
+.customer-data-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.customers-header {
+    color: white;
+    font-weight: 400;
+    font-size: 48px;
+}
+
+.customerName {
+    color: rgb(129, 130, 134);
+
+}
+
+label {
+    color: rgb(129, 130, 134);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgb(129, 130, 134);
+    border-radius: 0px;
+    outline: none;
+    /* Remove default outline */
+    font-family: 'PTSerif-Regular';
+    background-color: black;
+    color: white;
+    margin-top: 12px;
+}
+
+.input-container input:focus {
+    border-radius: 0;
+    /* Set border radius to 0 on focus */
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.input-container2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.input-container2 input {
+    width: 95%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgb(129, 130, 134);
+    border-radius: 0px;
+    outline: none;
+    /* Remove default outline */
+    font-family: 'PTSerif-Regular';
+    background-color: black;
+    color: white;
+    margin-top: 12px;
+}
+
+.custom-wrapper1 {
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.custom-wrapper2 {
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.label-wrapper2 {
+    width: 95%;
+}
+
+.country-div {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.country-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.drop-country{
+    height: 40px;
+    background-color: black;
+    color: white;
+    font-family: 'PTSerif-Regular';
+
+}
+
+.drop-country input:focus {
+    border-radius: 0;
+    /* Set border radius to 0 on focus */
+}
+
+.error-country{
+    color: white;
+    font-family: 'PTSerif-Regular';
+    font-size: 24px;
+}
+
+.vertical-divider{
+    width: 1px;
+    height: 100vh;
+    background-color: rgb(129, 130, 134);
+}
+
+
+@media (max-width: 1000px) {
+    .checkout-wrapper {
+        width: 100%;
+        margin-left: 0%;
+        margin-top: 148px;
+    }
+}
