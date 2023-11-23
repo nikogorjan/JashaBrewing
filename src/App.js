@@ -20,6 +20,7 @@ import {store, persistor} from './StateManagement/store'
 import { PersistGate } from 'redux-persist/integration/react';
 import Cart from './Routes/Cart/Cart';
 import Checkout from './Routes/Checkout/Checkout';
+import Completion from './Payments/Completion';
 
 
 
@@ -102,6 +103,8 @@ function App() {
             
             <Route path='/Cart' element={<Cart />} />
             <Route path='/Checkout' element={<Checkout />} />
+            <Route path='/completion' element={<Completion />} />
+
           </Routes>
         </Router>
         </PersistGate>

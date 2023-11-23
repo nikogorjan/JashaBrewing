@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Cart.css'
 import Navbar from '../Navbar/Navbar'
 import UserBar from '../UserBar/UserBar'
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux'; // Import useDispatch from react-redux
-import { removeFromCart, incrementQuantity, decrementQuantity } from '../../StateManagement/reducers'; // Import your removeFromCart action
+import { removeFromCart, incrementQuantity, decrementQuantity,updateShippingCost  } from '../../StateManagement/reducers'; // Import your removeFromCart action
 import { useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import axios from 'axios';
 
 const Cart = () => {
   const { t } = useTranslation();
   const cartItems = useSelector((state) => state.cart.cartItems); // Get cart items from Redux store
   const dispatch = useDispatch(); // Get the dispatch function from useDispatch
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch shipping data
+    axios.get("http://localhost:3000/ShippingData")
+      .then(response => {
+        // Update shipping cost in Redux state
+        const shippingCost = response.data[0].value * 100; // Convert to cents
+        dispatch(updateShippingCost(shippingCost));
+      })
+      .catch(error => {
+        console.error('Error fetching shipping data:', error);
+      });
+  }, [dispatch]);
 
 
   const handleRemoveItem = (ime, cenaIndex) => {

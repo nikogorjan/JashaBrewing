@@ -2,6 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   cartItems: [],
+  shippingCost: 0, // Add shippingCost to the state
+  placiloOption: '', // Add placiloOption to the state
+  customerPhone: '', // Add customerPhone to the state
+  customerName: '', // Add customerPhone to the state
+  customerSurname: '', // Add customerPhone to the state
+  customerUlica: '', // Add customerPhone to the state
+  customerPost: '', // Add customerPhone to the state
+  customerCity: '', // Add customerPhone to the state
+  customerEmail: '', // Add customerPhone to the state
+
 };
 
 const cartSlice = createSlice({
@@ -51,10 +61,37 @@ const cartSlice = createSlice({
         (item) => item.ime !== ime || item.cenaIndex !== cenaIndex
       );
     },
+    updateShippingCost: (state, action) => {
+      state.shippingCost = action.payload;
+    },
+    updatePlaciloOption: (state, action) => {
+      state.placiloOption = action.payload;
+    },
+    updateCustomerPhone: (state, action) => {
+      state.customerPhone = action.payload;
+    },
+    updateCustomerName: (state, action) => {
+      state.customerName = action.payload;
+    },
+    updateCustomerSurname: (state, action) => {
+      state.customerSurname = action.payload;
+    },
+    updateCustomerUlica: (state, action) => {
+      state.customerUlica = action.payload;
+    },
+    updateCustomerPost: (state, action) => {
+      state.customerPost = action.payload;
+    },
+    updateCustomerCity: (state, action) => {
+      state.customerCity = action.payload;
+    },
+    updateCustomerEmail: (state, action) => {
+      state.customerEmail = action.payload;
+    },
     // Add more reducers for other actions
   },
 });
 
-export const { addToCart, removeFromCart, incrementQuantity, decrementQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, incrementQuantity, decrementQuantity,updateShippingCost,updatePlaciloOption,updateCustomerPhone,updateCustomerName,updateCustomerSurname,updateCustomerUlica,updateCustomerPost,updateCustomerCity,updateCustomerEmail  } = cartSlice.actions;
 
 export default cartSlice.reducer;

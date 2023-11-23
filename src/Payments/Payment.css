@@ -1,0 +1,25 @@
+.stripe-form{
+    background-color: white;
+    padding: 50px;
+}
+
+.stripe-button{
+    margin-top: 20px;
+    width: 100px;
+    height: 32px;
+    font-family: 'PTSerif-Regular';
+    background-color: #998067;
+    border: 1px solid #998067;
+    color: black;
+    cursor: pointer;
+}
+
+.stripe-button:hover{
+    margin-top: 20px;
+    width: 100px;
+    height: 32px;
+    font-family: 'PTSerif-Regular';
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
