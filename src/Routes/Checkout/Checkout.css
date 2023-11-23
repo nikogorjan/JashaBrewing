@@ -18,7 +18,6 @@
     width: 40%;
     height: 100%;
 
-
 }
 
 .customer-data-container {
@@ -138,10 +137,193 @@ label {
 
 .vertical-divider{
     width: 1px;
-    height: 100vh;
     background-color: rgb(129, 130, 134);
 }
 
+.narocilo-wrapper{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header2{
+    font-size: 32px;
+    margin-top: 50px;
+}
+
+.dostava-paragraph{
+    color: rgb(129, 130, 134);
+    font-family: 'PTSerif-Regular';
+    font-size: 20px;
+    margin-top: 48px;
+}
+
+.dostava-option{
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 0px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    transition: height 0.3s ease;
+}
+
+
+
+.dostava-icon-wrapper{
+    width: 40px;
+    height: 40px;
+}
+
+.dostava-icon{
+    width: 100%;
+}
+
+#dostavaOption1{
+    width: 60px;
+    margin: 0;
+}
+
+#dostavaOption2{
+    width: 60px;
+    margin: 0;
+}
+
+.dostava-option-paragraph{
+    color: rgb(129, 130, 134);
+    font-family: 'PTSerif-Regular';
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.delivery-cost{
+    color: #998067;
+    font-family: 'PTSerif-Regular';
+    font-size: 20px;
+    margin-left: 4px;
+}
+
+.checkout-items-column{
+    margin-top: 32px;
+}
+
+.checkout-items-row{
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.checkout-items-image-wrapper{
+    width: 64px;
+    height: 64px;
+}
+
+.the-checkout-img{
+    width: 100%;
+}
+
+.checkout-item-name{
+    color: rgb(129, 130, 134);
+    font-family: 'PTSerif-Regular';
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+.checkout-item-name{
+    display: flex;
+    align-items: center;
+}
+
+.checkout-item-qt{
+    color: #998067;
+    font-family: 'PTSerif-Regular';
+    font-size: 16px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.checkout-item-price{
+    color: #998067;
+    font-family: 'PTSerif-Regular';
+    font-size: 20px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.expand-option{
+    height: 121px;
+}
+
+.checkout-horizontal-divider{
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    margin-top: 80px;
+}
+
+.partial-znesek{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.parial-paragraph{
+    font-size: 24px;
+    color: white;
+    font-family: 'PTSerif-Regular';
+
+}
+
+.final-price2{
+    color: #998067;
+    font-size: 24px;
+    font-family: 'PTSerif-Regular';
+}
+
+.checkout-horizontal-divider2{
+    width: 100%;
+    height: 3px;
+    background-color: white;
+}
+
+.parial-paragraph3{
+    font-size: 32px;
+    color: white;
+    font-family: 'PTSerif-Regular';
+}
+
+.final-price3{
+    color: #998067;
+    font-size: 32px;
+    font-family: 'PTSerif-Regular';
+}
+
+.buy-button{
+    width: 100%;
+    height: 80px;
+    background-color: #998067;
+    border: 1px solid #998067;
+    border-radius: 0px;
+    font-size: 24px;
+    font-family: 'PTSerif-Regular';
+    margin-top: 48px;
+}
+
+.buy-button:hover{
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #998067;
+    border-radius: 0px;
+    font-size: 24px;
+    font-family: 'PTSerif-Regular';
+    margin-top: 48px;
+}
 
 @media (max-width: 1000px) {
     .checkout-wrapper {

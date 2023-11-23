@@ -35,7 +35,18 @@
     "countryError": "To ship outside Slovenia, please contact us at our email address info@jashabrewing.com or by phone at 031 222 223.",
     "postnast": "POSTAL CODE",
     "mesto": "CITY",
-    "email": "E-MAIL"
+    "email": "E-MAIL",
+    "emailrepeat": "REPEAT E-MAIL",
+    "narocilo": "Your order",
+    "dostava": "Delivery",
+    "postaslo": "Post of Slovenia",
+    "osebniprevzem": "Personal Pickup",
+    "povzetje": "Cash on delivery",
+    "creditcard": "Credit card",
+    "placilo": "Payment",
+    "partial": "Partial amount",
+    "full": "Amount",
+    "buy": "Buy now"
 
 
 

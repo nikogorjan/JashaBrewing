@@ -35,7 +35,19 @@
     "countryError": "Za pošiljanje izven Slovenije prosim, da nas kontaktirate na naš e-naslov info@jashabrewing.com ali na telefon 031 222 223",
     "postnast": "POŠTNA ŠTEVILKA",
     "mesto": "MESTO",
-    "email": "E-NASLOV"
+    "email": "E-NASLOV",
+    "emailrepeat": "PONOVI E-NASLOV",
+
+    "narocilo": "Vaše naročilo",
+    "dostava": "Dostava",
+    "postaslo": "Pošta Slovenije",
+    "osebniprevzem": "Osebni prevzem",
+    "povzetje": "Plačilo po povzetju",
+    "creditcard": "Kreditna kartica",
+    "placilo": "Plačilo",
+    "partial": "Delni znesek",
+    "full": "Znesek",
+    "buy": "Kupite sedaj"
 
 
 
