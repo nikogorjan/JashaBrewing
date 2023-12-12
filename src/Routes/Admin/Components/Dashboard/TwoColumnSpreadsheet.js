@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 const TwoColumnSpreadsheet = ({ initialData, onDataChange }) => {
   // Add an empty row at the beginning
   const initialRows = initialData.includes(";")
-    ? [["", ""], ...initialData.split("|").map((row) => row.split(";"))]
-    : [["", ""]];
+    ? [["", "","",""], ...initialData.split("|").map((row) => row.split(";"))]
+    : [["", "","",""]];
 
   const [data, setData] = useState(initialRows);
 
@@ -21,12 +21,11 @@ const TwoColumnSpreadsheet = ({ initialData, onDataChange }) => {
   useEffect(() => {
     // Combine rows with semicolons and update the parent component
     const updatedData = data.slice(1).map((row) => row.join(";")).join("|");
-    console.log("updated: " + updatedData);
     onDataChange(updatedData);
   }, [data]);
 
   const handleAddRow = () => {
-    setData((prevData) => [...prevData, ["", ""]]);
+    setData((prevData) => [...prevData, ["", "","",""]]);
   };
 
   return (
@@ -41,7 +40,11 @@ const TwoColumnSpreadsheet = ({ initialData, onDataChange }) => {
                     <p className="checkbox-para">Ponudba</p>
                   ) : rowIndex === 0 && colIndex === 1 ? (
                     <p className="checkbox-para">Cena</p>
-                  ) : (
+                  ) : rowIndex === 0 && colIndex === 2 ? (
+                    <p className="checkbox-para">Enote v paketu</p>
+                  ): rowIndex === 0 && colIndex === 3 ? (
+                    <p className="checkbox-para">Zaloga</p>
+                  ):(
                     <input
                       type="text"
                       value={cell}

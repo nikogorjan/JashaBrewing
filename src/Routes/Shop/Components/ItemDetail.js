@@ -7,6 +7,7 @@ import UserBar from '../../UserBar/UserBar';
 import NavbarCopy from '../../Navbar/NavbarCopy';
 import { useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../../StateManagement/reducers';
+import Footer from '../../Footer/Footer';
 
 const ItemDetail = () => {
     const location = useLocation();
@@ -28,8 +29,7 @@ const ItemDetail = () => {
     }
 
     useEffect(() => {
-        console.log(item)
-        console.log(location.pathname)
+        
         setItemCopy(item)
     }, [])
 
@@ -109,7 +109,7 @@ const ItemDetail = () => {
         <div>
             <Navbar />
             <UserBar />
-            <div className='shop-items-main'>
+            <div className='shop-items-main detail-main'>
 
                 <div className='item-added-div'>
                     ITEM ADDED
@@ -121,6 +121,8 @@ const ItemDetail = () => {
                         <div className='item-description-left'>
                             <img src={itemCopy?.Image} alt={itemCopy?.ime} className='shop-item-img-description' />
                             {itemCopy.popust !== "0" && <div className='description-popust'>-{itemCopy?.popust}%</div>}
+                            {itemCopy.navoljo === 0 && <div className='description-navoljo'>{t('nizaloge')}</div>}
+
                         </div>
 
                         <div className='item-description-right'>
@@ -149,7 +151,7 @@ const ItemDetail = () => {
                                 </div>
                                 <p className='beer-price'>{itemCopy?.cena[descriptionMenuIndex].price}€</p>
 
-                                <button className='add-to-cart-button width-button' onClick={() => handleAddToCart(item, descriptionMenuIndex)}>{t('addCart')}</button>
+                                <button className='add-to-cart-button width-button' onClick={() => handleAddToCart(item, descriptionMenuIndex)} disabled={itemCopy.navoljo === 0}>{t('addCart')}</button>
 
                                 <div className='description-buttons-row'>
                                     <div className='hover-left' onClick={() => { toggleItemDescription(null) }}>
@@ -169,6 +171,7 @@ const ItemDetail = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

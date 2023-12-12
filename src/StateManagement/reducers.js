@@ -11,7 +11,12 @@ const initialState = {
   customerPost: '', // Add customerPhone to the state
   customerCity: '', // Add customerPhone to the state
   customerEmail: '', // Add customerPhone to the state
-
+  confirmEmail: '', // Add customerPhone to the state
+  pogoji: true,
+  purchaseID: '', // Add customerPhone to the state
+  purchaseComplete: '',
+  superID:'',
+  superComplete:''
 };
 
 const cartSlice = createSlice({
@@ -88,10 +93,35 @@ const cartSlice = createSlice({
     updateCustomerEmail: (state, action) => {
       state.customerEmail = action.payload;
     },
+    updateConfirmEmail: (state, action) => {
+      state.confirmEmail = action.payload;
+    },
+    togglePogoji: (state) => {
+      state.pogoji = !state.pogoji;
+    },
+    updatePurchaseId: (state, action) => {
+      state.purchaseID = action.payload;
+    },
+    updateSuperId: (state, action) => {
+      state.superID = action.payload;
+    },
+    updatePurchaseComplete: (state, action) => {
+      state.purchaseComplete = action.payload;
+    },
+    updateSuperComplete: (state, action) => {
+      state.superComplete = action.payload;
+    },
+    
+    removeAllFromCart: (state, action) => {
+      state.cartItems = []; // Set cartItems to an empty array to remove all items
+    },
+    setPogojiToTrue: (state) => {
+      state.pogoji = true;
+    },
     // Add more reducers for other actions
   },
 });
 
-export const { addToCart, removeFromCart, incrementQuantity, decrementQuantity,updateShippingCost,updatePlaciloOption,updateCustomerPhone,updateCustomerName,updateCustomerSurname,updateCustomerUlica,updateCustomerPost,updateCustomerCity,updateCustomerEmail  } = cartSlice.actions;
+export const { addToCart, removeFromCart, incrementQuantity, decrementQuantity,updateShippingCost,updatePlaciloOption,updateCustomerPhone,updateCustomerName,updateCustomerSurname,updateCustomerUlica,updateCustomerPost,updateCustomerCity,updateCustomerEmail,updateConfirmEmail,togglePogoji,updatePurchaseId,updatePurchaseComplete,removeAllFromCart,updateSuperId,updateSuperComplete,setPogojiToTrue  } = cartSlice.actions;
 
 export default cartSlice.reducer;

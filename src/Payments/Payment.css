@@ -23,3 +23,9 @@
     color: white;
     cursor: pointer;
 }
+
+@media (max-width: 550px) {
+    .stripe-form{
+        padding: 10px
+    }   
+}

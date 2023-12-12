@@ -1,0 +1,35 @@
+.terms-main{
+    width: 100%;
+}
+
+.terms-wrapper{
+    width: 85%;
+    margin-left: 15%;
+    margin-top: 148px;
+}
+
+.section-header{
+    color: white;
+    font-weight: 400;
+}
+
+.section-paragraph{
+    color: rgb(129, 130, 134);
+}
+
+.terms-inner-wrapper{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.section-container{
+    margin-bottom: 48px;
+}
+
+@media (max-width: 1000px) {
+    .terms-wrapper{
+        width: 100%;
+        margin-left: 0%;
+        margin-top: 148px;
+    }
+}

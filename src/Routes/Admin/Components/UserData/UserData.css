@@ -1,0 +1,100 @@
+.user-data-main{
+    width: 100%;
+}
+
+.user-data-wrapper{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.user-layout{
+    width: 100%;
+    display: flex;
+    margin-top: 32px;
+}
+
+.wser-leyout-left{
+    width: 50%;
+}
+
+.wser-leyout-right{
+    width: 50%;
+}
+
+.copy-emails-wrapper{
+    margin-top: 48px;
+    width: 100%;
+   padding: 20px;
+}
+
+.users-text-area{
+    width: 100%;
+    height: 400px;
+}
+
+.user-data-wrapper2{
+    width: 90%;
+}
+
+.shipping-paragraph{
+    color: white;
+}
+
+.pivnica-row{
+    display: flex;
+}
+
+.pivnica-img-holder{
+    width: 200px;
+    height: 200px;
+    margin-right: 32px;
+    cursor: pointer;
+}
+
+.pivnica-img{
+    width: 100%;
+}
+
+.lock-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.locked-checkbox{
+    width: 15px;
+    padding: 0;
+    margin: 0;
+    margin-right: 15px;
+}
+
+.lock-paragraph{
+    color: white;
+}
+
+@media (max-width: 1000px) {
+    .user-layout{
+        flex-direction: column;
+    }
+
+    .wser-leyout-left{
+        width: 100%;
+    }
+
+    .wser-leyout-right{
+        width: 100%;
+    }
+
+    .copy-emails-wrapper{
+        padding: 0;
+    }
+
+    .user-spending-main{
+        margin-left: 0px !important;
+        margin-top: 20px;
+    }
+
+    .user-data-wrapper{
+        width: 90%;
+    }
+}

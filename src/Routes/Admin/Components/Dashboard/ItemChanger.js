@@ -8,31 +8,38 @@ const ItemChanger = ({ item, onUpdateItem, inputId, onDeleteItem, index }) => {
     const [imageSrc, setImageSrc] = useState(noimg);
     const [ime, setIme] = useState(item.ime);
     const [podnaslov, setPodnaslov] = useState(item.podnaslov);
+    const [enote, setEnote] = useState(item.enote);
+
     const [popust, setPopust] = useState(item.popust);
     const [opisslo, setOpisslo] = useState(item.opisslo);
     const [opiseng, setOpiseng] = useState(item.opiseng);
     const [cena, setCena] = useState(item.cena);
     const [isCheckboxChecked, setIsCheckboxChecked] = useState(item.cena && item.cena.includes(";"));
+    const [navoljo, setNavoljo] = useState(item.navoljo === 1);
+    const [enoteSkupaj, setEnoteSkupaj] = useState(item.enoteSkupaj === 1);
+
 
     const handleDeleteItemClick = () => {
         // Notify the parent component to delete the item with the specified index
         onDeleteItem(index);
-      };
+    };
 
     const handleCheckboxChange = () => {
         // Toggle the checked state
         setIsCheckboxChecked((prevChecked) => !prevChecked);
-        
+
         setCena('')
     };
+
+
 
     // Update the local state if the 'cena' prop changes
     useEffect(() => {
         setIsCheckboxChecked(item.cena && item.cena.includes(";"));
-        
+
     }, [item.cena]);
 
-    
+
 
     useEffect(() => {
         const loadImage = async () => {
@@ -62,6 +69,13 @@ const ItemChanger = ({ item, onUpdateItem, inputId, onDeleteItem, index }) => {
         onUpdateItem({ ...item, podnaslov: e.target.value });
     };
 
+    const handleEnoteChange = (e) => {
+        // Update the local state
+        setEnote(e.target.value);
+        // Notify the parent component to update the item
+        onUpdateItem({ ...item, enote: e.target.value });
+    };
+
     const handlePopustChange = (e) => {
         // Update the local state
         setPopust(e.target.value);
@@ -83,22 +97,36 @@ const ItemChanger = ({ item, onUpdateItem, inputId, onDeleteItem, index }) => {
         onUpdateItem({ ...item, opiseng: e.target.value });
     };
 
-    
+    const handleNavoljoChange = () => {
+        // Toggle the checked state
+        setNavoljo((prevChecked) => !prevChecked);
+        onUpdateItem({ ...item, navoljo: !navoljo ? 1 : 0 });
+
+    };
+
+    const handleEnoteSkupajChange = () => {
+        // Toggle the checked state
+        setEnoteSkupaj((prevChecked) => !prevChecked);
+        onUpdateItem({ ...item, enoteSkupaj: !enoteSkupaj ? 1 : 0 });
+
+    };
+
+
 
     const handleCenaChangeWrapper = (updatedData) => {
         // Update the state or perform an action when the data changes
-        
-      
+
+
         // Use the callback function to log the updated cena
         setCena(updatedData)
-      };
+    };
 
-      useEffect(()=>{
-        
+    useEffect(() => {
+
         onUpdateItem({ ...item, cena: cena });
-      },[cena])
+    }, [cena])
 
-   
+
 
 
 
@@ -192,6 +220,47 @@ const ItemChanger = ({ item, onUpdateItem, inputId, onDeleteItem, index }) => {
 
                         <input
                             type="checkbox"
+                            checked={navoljo}
+                            onChange={handleNavoljoChange}
+                        />
+
+                    </div>
+                    <p className='checkparagraph'>Na voljo</p>
+
+
+                </div>
+
+                <div className='data-column-row alignrow'>
+
+                    <div className='checkbox-column'>
+
+                        <input
+                            type="checkbox"
+                            checked={enoteSkupaj}
+                            onChange={handleEnoteSkupajChange}
+                        />
+
+                    </div>
+                    <p className='checkparagraph'>Zaloga je skupna vsem ponudbam</p>
+
+
+                </div>
+                {enoteSkupaj && (
+                    <div className='data-column-row alignrow'>
+                        <input
+                            type="text"
+                            placeholder='enote'
+                            value={enote}
+                            onChange={handleEnoteChange}
+                        />
+                    </div>
+                )}
+                <div className='data-column-row alignrow'>
+
+                    <div className='checkbox-column'>
+
+                        <input
+                            type="checkbox"
                             checked={isCheckboxChecked}
                             onChange={handleCheckboxChange}
                         />
@@ -204,12 +273,12 @@ const ItemChanger = ({ item, onUpdateItem, inputId, onDeleteItem, index }) => {
 
                 <div className='data-column-row alignrow'>
                     {isCheckboxChecked ? (
-                            <TwoColumnSpreadsheet initialData={cena} onDataChange={handleCenaChangeWrapper} />
+                        <TwoColumnSpreadsheet initialData={cena} onDataChange={handleCenaChangeWrapper} />
 
                     ) : (
                         <TwoColumnSpreadsheet initialData={cena} onDataChange={handleCenaChangeWrapper} />
-                        
-                    
+
+
                     )}
 
                 </div>

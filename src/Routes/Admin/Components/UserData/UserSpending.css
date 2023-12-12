@@ -1,0 +1,32 @@
+.user-spending-main{
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #998067;
+    border-radius: 0px;
+    height: 300px;
+    overflow-y: auto;
+  margin: 20px;
+}
+
+.user-spending-main {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: white;
+  }
+  
+  th {
+    background-color: #998067;
+  }

@@ -1,9 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ContactDesign.css'
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 const ContactDesign = () => {
     const { t } = useTranslation();
+    const [phoneData, setPhoneData] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [phone, setPhone] = useState("");
+
+    const getPhoneData = async () => {
+        try {
+            const response = await axios.get('https://api.jashabrewing.com/PhoneData');
+            setPhoneData(response.data);
+
+            if (response.data && response.data.length > 0) {
+                const { mobile, phone } = response.data[0];
+                setMobile(mobile);
+                setPhone(phone);
+            }
+        } catch (error) {
+            console.error('Error fetching AdminData:', error);
+        }
+    };
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await getPhoneData();
+        };
+        fetchData();
+    }, []);
 
     const revealItems = () => {
         const shopItems = document.querySelectorAll('.contact-design-wrapper');
@@ -14,11 +41,11 @@ const ContactDesign = () => {
     }
 
     useEffect(() => {
-        setTimeout(()=>{
+        setTimeout(() => {
             revealItems();
 
-        },100)
-    },[])
+        }, 100)
+    }, [])
 
     return (
         <div className='contact-design-main'>
@@ -26,22 +53,24 @@ const ContactDesign = () => {
                 <div className='contact-design-left'>
                     <div className='contact-info-wrapper'>
                         <div className='inline-wrapper'>
-                        <h1 className='contactheader'>{t('contact')}</h1>
-                        <div className='contact-wrapper1'>
-                            <p className='contact-paragraph'>Jasha Brewing d. o. o.</p>
-                            <p className='contact-paragraph'>Lendavsko naselje 1</p>
-                            <p className='contact-paragraph'>9000 Murska Sobota</p>
-                            <p className='contact-paragraph'>{t('slovenia')}</p>
-                        </div>
-                        <div className='contact-wrapper2'>
-                            <p className='contact-paragraph'>tel: +386 (0)31 222 222</p>
-                            <p className='contact-paragraph'>e-mail: info@jashabrewing.com</p>
-                            
-                        </div>
-                        <div className='contact-wrapper3'>
-                            <p className='contact-paragraph'>{t('brewery2')}: 031 222 223</p>
-                            
-                        </div>
+                            <h1 className='contactheader'>{t('contact')}</h1>
+                            <div className='contact-wrapper1'>
+                                <p className='contact-paragraph'>Jasha Brewing d. o. o.</p>
+                                <p className='contact-paragraph'>Plese 2</p>
+                                <p className='contact-paragraph'>9000 Murska Sobota</p>
+                                <p className='contact-paragraph'>{t('slovenia')}</p>
+                            </div>
+                            <div className='contact-wrapper2'>
+                                <p className='contact-paragraph'>tel: {mobile}</p>
+                                <p className='contact-paragraph'>e-mail: info@jashabrewing.com</p>
+
+                            </div>
+
+                            <div className='contact-wrapper3'>
+                                <p className='contact-paragraph'>{t('brewery2')}: {phone}</p>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -132,6 +132,16 @@ const Navbar = () => {
 
     }
 
+    const handleFacebookIconClick = () => {
+        const facebookLink = 'https://www.facebook.com/profile.php?id=100069968973291&locale=sl_SI';
+        window.open(facebookLink, '_blank');
+      };
+
+      const handleInstagramIconClick = () => {
+        const facebookLink = 'https://www.instagram.com/jashabrewing/';
+        window.open(facebookLink, '_blank');
+      };
+
     return (
         <div className='navbar-main'>
             <div className='logo-holder'>
@@ -166,8 +176,11 @@ const Navbar = () => {
                     <FontAwesomeIcon
                         icon={faSquareFacebook}
                         className='social-icon'
+                        onClick={handleFacebookIconClick}
+
                     />
-                    <FontAwesomeIcon icon={faInstagram} className='social-icon insta-margin' />
+                    <FontAwesomeIcon icon={faInstagram} className='social-icon insta-margin'                         onClick={handleInstagramIconClick}
+/>
                 </div>
             </div>
 

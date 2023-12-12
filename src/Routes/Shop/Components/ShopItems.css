@@ -4,6 +4,14 @@
     margin-top: 100px;
 }
 
+.detail-main{
+  margin-bottom: 300px;
+}
+
+.footer-hide {
+  display: none;
+}
+
 .shop-items-wrapper {
     width: 80%;
     margin: 0 auto;
@@ -49,6 +57,20 @@
   align-items: center;
   justify-content: center;
   border-radius: 50px;
+}
+
+.ninavoljo{
+  width: 100px;
+  height: 30px;
+  background-color: #FF6B6B;
+  position: absolute;
+  right: 0;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  font-size: 12px;
 }
 
 .shop-item-img {
@@ -365,6 +387,15 @@ li {
 
   }
 
+  .category-menu2{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
   .category-name{
     margin-left: 64px;
     font-family: 'PTSerif-Regular';
@@ -393,6 +424,20 @@ li {
     align-items: center;
     justify-content: center;
     border-radius: 50px;
+  }
+
+  .description-navoljo{
+    width: 100px;
+    height: 30px;
+    background-color: #FF6B6B;
+    position: absolute;
+    right: 20%;
+    top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-size: 12px;
   }
 
   .item-added-div{
@@ -459,6 +504,20 @@ li {
       font-size: 12px;
     }
 
+    .ninavoljo{
+      width: 70px;
+      height: 20px;
+      background-color: #FF6B6B;
+      position: absolute;
+      right: 0;
+      top: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      font-size: 10px;
+    }
+
 
 }
 
@@ -497,6 +556,15 @@ li {
     .description-paragraph1{
       margin-top: 48px;
     }
+
+    .category-menu2{
+      width: 100%;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
     
   }
 
@@ -512,6 +580,10 @@ li {
 
     }
 
+    .detail-main{
+      margin-bottom: 100px;
+    }
+
     .popust{
       width: 100px;
       height: 30px;
@@ -524,6 +596,22 @@ li {
       justify-content: center;
       border-radius: 50px;
     }
+
+    .ninavoljo{
+      width: 100px;
+      height: 30px;
+      background-color: #FF6B6B;
+      position: absolute;
+      right: 0;
+      top: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      font-size: 12px;
+    }
+
+    
 
     .item-added-div{
       right: 50%;
@@ -550,6 +638,20 @@ li {
     justify-content: center;
     border-radius: 50px;
     font-size: 12px;
+  }
+
+  .ninavoljo{
+    width: 70px;
+    height: 20px;
+    background-color: #FF6B6B;
+    position: absolute;
+    right: 0;
+    top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-size: 10px;
   }
 
 
@@ -595,6 +697,20 @@ li {
       align-items: center;
       justify-content: center;
       border-radius: 50px;
+    }
+
+    .ninavoljo{
+      width: 100px;
+      height: 30px;
+      background-color: #FF6B6B;
+      position: absolute;
+      right: 0;
+      top: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      font-size: 12px;
     }
 
     .category-name{

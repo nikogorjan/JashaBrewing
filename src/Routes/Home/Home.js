@@ -5,11 +5,31 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import axios from 'axios';
 
 const Home = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [goShop, setGoShop] = useState(false);
+    const [lock, setLock] = useState();
+
+    const getLockData = async () => {
+        try {
+            const response = await axios.get('https://api.jashabrewing.com/LockData');
+            setLock(response.data);
+
+        } catch (error) {
+            console.error('Error fetching AdminData:', error);
+        }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await getLockData();
+        };
+        fetchData();
+    }, []);
+
     //fadein animacija
     useEffect(()=>{
 
@@ -54,9 +74,9 @@ const Home = () => {
         setTimeout(()=>{
             document.querySelector('.answer-ne').classList.remove('reveal');
         },0);
-
+        sessionStorage.setItem('validAge', 'true');
         setTimeout(()=>{
-            sessionStorage.setItem('validAge', 'true');
+            
 
             setGoShop(true);
         },1450);
@@ -84,11 +104,26 @@ const Home = () => {
         </Helmet>
         <div className='content-wrapper'>
             <img alt='Logo' src={logo} className='logo-img'/>
-            <p className='age-question'>{t('greeting')}</p>
-            <div className='answers-row'>
-                <p className='answer-da' onClick={goToShop}>{t('yes')}</p>
-                <p className='answer-ne' onClick={goToYouTubeKids}>{t('no')}</p>
-            </div>
+
+            {lock && lock.length > 0 && lock[0].locked === 0 ? (
+                    <>
+                        <p className='age-question'>{t('greeting')}</p>
+                        <div className='answers-row'>
+                            <p className='answer-da' onClick={goToShop}>{t('yes')}</p>
+                            <p className='answer-ne' onClick={goToYouTubeKids}>{t('no')}</p>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <p className='age-question'>{t('kmalu')}</p>
+                        <div className='answers-row'>
+                            <p className='answer-da' ></p>
+                            <p className='answer-ne'></p>
+                        </div>
+                    </>
+                    
+                    
+                )}
         </div>
     </div>
   )

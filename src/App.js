@@ -21,6 +21,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Cart from './Routes/Cart/Cart';
 import Checkout from './Routes/Checkout/Checkout';
 import Completion from './Payments/Completion';
+import TermsOfBusiness from './Routes/Terms/TermsOfBusiness';
+import UserData from './Routes/Admin/Components/UserData/UserData';
+import AuthRoute2 from './Routes/Admin/Components/Auth/AuthRoute2';
 
 
 
@@ -41,6 +44,9 @@ function App() {
     const storedAuthState = sessionStorage.getItem('isAuthenticated');
     return storedAuthState === 'true';
   });
+
+  
+
   const handleLogin = () => {
     // Your authentication logic goes here
     // For now, let's simulate a successful login
@@ -73,6 +79,8 @@ function App() {
       });
   }, []);
 
+  
+
 
   return (
     <div className="App">
@@ -84,7 +92,11 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<Home />} />
+
+
             <Route path='/Shop' element={<Shop />} />
+
+
             <Route path='/Pub' element={<Pub />} />
             <Route path='/Brewery' element={<Brewery />} />
             <Route path='/Contact' element={<Contact />} />
@@ -92,6 +104,10 @@ function App() {
             <Route
               path="/Dashboard"
               element={<AuthRoute isAuthenticated={isAuthenticated} element={<Dashboard />} />}
+            />
+            <Route
+              path="/User"
+              element={<AuthRoute isAuthenticated={isAuthenticated} element={<UserData />} />}
             />
             <Route
               path="/Items/:categoryName"
@@ -103,7 +119,8 @@ function App() {
             
             <Route path='/Cart' element={<Cart />} />
             <Route path='/Checkout' element={<Checkout />} />
-            <Route path='/completion' element={<Completion />} />
+            <Route path='/Completion' element={<Completion />} />
+            <Route path='/Terms' element={<TermsOfBusiness />} />
 
           </Routes>
         </Router>
