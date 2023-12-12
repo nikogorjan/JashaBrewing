@@ -13,7 +13,7 @@ const Admin = ({ onLogin }) => {
 
   const getLoginData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/AdminData');
+      const response = await axios.get('https://api.jashabrewing.com/AdminData');
       setAdminData(response.data);
     } catch (error) {
       console.error('Error fetching AdminData:', error);

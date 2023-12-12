@@ -2,6 +2,7 @@
     width: 85%;
     margin-left: 15%;
     margin-top: 100px;
+    margin-bottom: 300px;
 }
 
 .kosarica-header {
@@ -33,6 +34,11 @@
     align-items: center;
     margin-bottom: 48px;
     justify-content: space-between;
+
+}
+
+.shipping-treshold-paragraph{
+    color: rgb(129, 130, 134);
 
 }
 
@@ -146,6 +152,19 @@
 .cart-button{
     margin-top: 80px;
     width: 240px;
+}
+
+.treshold-row{
+    display: flex;
+    margin-top: 40px;
+}
+
+.space-left{
+    margin-left: 4px;
+}
+
+.removed-items-paragraph{
+    color: #FF6B6B;
 }
 
 @media (max-width: 1000px) {

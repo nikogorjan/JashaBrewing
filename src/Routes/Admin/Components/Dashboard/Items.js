@@ -3,6 +3,7 @@ import './Items.css'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import ItemChanger from './ItemChanger';
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
 
 const Items = () => {
     const location = useLocation();
@@ -16,7 +17,10 @@ const Items = () => {
         popust: 0,
         slika: null,
         category: category.name,
-        cena: ""
+        cena: "",
+        navoljo: false,
+        enote: "",
+        enoteSkupaj: false
     });
 
     const handleAddItem = () => {
@@ -32,13 +36,18 @@ const Items = () => {
             popust: 0,
             slika: null,
             category: category.name,
-            cena: ""
+            cena: "",
+            navoljo: false,
+            enote: "",
+            enoteSkupaj: false
+
+
         });
     };
 
     const getItemsData = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/ItemsData');
+            const response = await axios.get('https://api.jashabrewing.com/ItemsData');
             setItemsData(response.data);
         } catch (error) {
             console.error('Error fetching AdminData:', error);
@@ -68,7 +77,7 @@ const Items = () => {
 
       const saveItemData = async (itemsData) => {
         try {
-          await axios.post('http://localhost:3000/SaveItemsData', { itemsData });
+          await axios.post('https://api.jashabrewing.com/SaveItemsData', { itemsData });
           console.log('Item data saved successfully');
         } catch (error) {
           console.error('Error saving item data:', error);
@@ -82,8 +91,7 @@ const Items = () => {
 
       const handleDeleteItem = (index) => {
         // Use the callback form of setItemsData to ensure that we get the latest state
-        console.log("before deleting")
-        console.log(itemsData)
+        
        
         setItemsData(prevItemsData => {
             // Use the filter method to create a new array excluding the item at the specified index
@@ -92,14 +100,11 @@ const Items = () => {
         });
     };
 
-    useEffect(() => {
-        console.log("itemsData")
-        console.log(itemsData)
-        
-    }, [itemsData]);
+    
 
     return (
         <div className='items-main'>
+            <AdminNavbar/>
             <div className='items-wrapper'>
                 <h1 className='items-header'>{category.name}</h1>
                 <div className='buttons-row'>

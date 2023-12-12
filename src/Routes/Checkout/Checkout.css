@@ -325,10 +325,85 @@ label {
     margin-top: 48px;
 }
 
+.error-message{
+    color: #FF6B6B;
+}
+
+#dostavaOption3{
+    width: 16px;
+    padding: 0px;
+    margin-bottom: 0px;
+}
+
+.pogoji-poslovanja-div{
+    display: flex;
+    align-items: center;
+}
+
+.pogoji-paragraph{
+    color: rgb(129, 130, 134);
+    margin-left: 12px;
+}
+
+.pogoji-paragraph-underline{
+    color: rgb(129, 130, 134);
+    margin-left: 4px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.pogoji-paragraph-underline:hover{
+    color: white;
+}
+
 @media (max-width: 1000px) {
     .checkout-wrapper {
         width: 100%;
         margin-left: 0%;
         margin-top: 148px;
+    }
+}
+
+@media (max-width: 850px) {
+    .vertical-divider{
+        width: 0px;
+    }
+
+    .checkout-divider{
+        flex-direction: column;
+    }
+
+    .checkout-left{
+        width: 100%;
+    }
+
+    .checkout-right{
+        width: 100%;
+    }
+
+    .checkout-wrapper{
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 550px) {
+    .customer-data-container{
+        width: 90%;
+    }
+
+    .narocilo-wrapper{
+        width: 90%;
+    }
+
+    .input-row{
+        flex-direction: column;
+    }
+
+    .label-wrapper2{
+        width: 100%;
+    }
+
+    .input-container2 input{
+        width: 100%;
     }
 }

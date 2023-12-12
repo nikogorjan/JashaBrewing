@@ -6,6 +6,7 @@ import { Buffer } from 'buffer';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../../StateManagement/reducers';
+import Footer from '../../Footer/Footer';
 
 
 
@@ -21,7 +22,7 @@ const ShopItems = () => {
 
     const getItemsData = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/ItemsData');
+            const response = await axios.get('https://api.jashabrewing.com/ItemsData');
             setItemsDatabase(response.data);
         } catch (error) {
             console.error('Error fetching AdminData:', error);
@@ -38,7 +39,7 @@ const ShopItems = () => {
 
     const getCategoryData = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/CategoryData');
+            const response = await axios.get('https://api.jashabrewing.com/CategoryData');
             setCategoryData(response.data);
 
         } catch (error) {
@@ -62,12 +63,12 @@ const ShopItems = () => {
             setSelectedCategory(categoryData[0].name);
             setFirstSelect(false);
         }
-
+       
 
     }, [firstSelect, categoryData]);
 
 
-    
+
 
     const handleDropDownHover = (index, subIndex) => {
         const newSelectedItems = [...selectedItems];
@@ -103,13 +104,7 @@ const ShopItems = () => {
 
     }
 
-    useEffect(() => {
-        hidelItems();
-        setTimeout(() => {
-            revealItems();
-
-        }, 100)
-    }, [])
+    
 
     const handleCategoryClick = (index) => {
         setSelectedItems(new Array(200).fill(0));
@@ -117,17 +112,14 @@ const ShopItems = () => {
 
     };
 
-    useEffect(() => {
-        revealItems()
-
-    }, [selectedCategory])
+    
 
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     const [transformedData, setTransformedData] = useState([]);
     const [selectedItems, setSelectedItems] = useState(new Array(200).fill(0));
-    
+
     const convertImageToBase64 = (item) => {
         if (item.slika) {
             const base64Image = Buffer.from(item.slika, 'binary').toString('base64');
@@ -141,8 +133,8 @@ const ShopItems = () => {
         if (cena && cena.includes(';')) {
             const children = cena.split('|');
             return children.map((child) => {
-                const [name, price] = child.split(';');
-                return { name: name.trim(), price: price.trim() };
+                const [name, price,enote,enoteNavoljo] = child.split(';');
+                return { name: name.trim(), price: price.trim(),enote: enote.trim(),enoteNavoljo: enoteNavoljo.trim() };
             });
         } else {
             // If cena doesn't contain "|", create a single child with name as null
@@ -153,22 +145,22 @@ const ShopItems = () => {
     const transformItem = (item) => {
         const imageSrc = convertImageToBase64(item);
         const cenaArray = convertCenaToArray(item.cena);
-    
+
         // Convert popust to a numeric value
         const popust = parseFloat(item.popust);
-    
+
         // Apply the discount to each item in cenaArray
         const discountedCenaArray = cenaArray.map((item) => {
             // Convert price to a numeric value
             const originalPrice = parseFloat(item.price);
-    
+
             // Calculate the discounted price
             const discountedPrice = popust !== 0 ? (originalPrice - (originalPrice * popust / 100)).toFixed(2) : originalPrice.toFixed(2);
-    
+
             // Return the updated item
             return { ...item, price: discountedPrice.toString() };
         });
-    
+
         return {
             id: item.idItems,
             ime: item.ime,
@@ -178,7 +170,8 @@ const ShopItems = () => {
             Image: imageSrc,
             category: item.category,
             cena: discountedCenaArray,
-            popust: item.popust
+            popust: item.popust,
+            navoljo: item.navoljo
         };
     };
 
@@ -190,14 +183,21 @@ const ShopItems = () => {
             setTransformedData(transformedItemsData);
 
         }
+        
     }, [itemsDatabase]);
 
-    useEffect(() => {
-        // Check if itemsDatabase is not null before mapping
+    
 
-        revealItems()
-        
-    }, [transformedData]);
+    const [showFooter, setShowFooter] = useState(false);
+    useEffect(() => {
+        // Introduce a 500ms delay before showing the Footer
+        const delay = setTimeout(() => {
+          setShowFooter(true);
+        }, 500);
+    
+        // Clear the timeout if the component unmounts before the delay is completed
+        return () => clearTimeout(delay);
+      }, [transformedData]); 
 
 
 
@@ -209,12 +209,12 @@ const ShopItems = () => {
         hidelItems()
         // Navigate to the new route and pass the item as state
         setTimeout(() => {
-            window.scrollTo({ top: 0,  });
+            window.scrollTo({ top: 0, });
             navigate(route, { state: { item } });
 
         }, 1100);
 
-        
+
     };
 
     const handleAddToCart = (item, cenaIndex) => {
@@ -222,20 +222,29 @@ const ShopItems = () => {
 
         document.querySelector('.item-added-div').classList.add("show-added-item-div");
 
-        setTimeout(()=>{
+        setTimeout(() => {
             document.querySelector('.item-added-div').classList.remove("show-added-item-div");
 
-        },1000)
+        }, 1000)
 
-      };
-    
-      const handleRemoveFromCart = (itemId) => {
+    };
+
+    const handleRemoveFromCart = (itemId) => {
         dispatch(removeFromCart(itemId));
-      };
+    };
 
-    
+    useEffect(() => {
+        hidelItems();
+        setTimeout(() => {
+            revealItems();
+
+        }, 100)
+        
+
+    }, [transformedData,handleCategoryClick])
 
     return (
+        <>
         <div className='shop-items-main'>
 
             <div className='item-added-div'>
@@ -243,7 +252,7 @@ const ShopItems = () => {
                 <div className='progress-bar'></div>
             </div>
 
-            {categoryData && categoryData.length > 1 && (
+            {categoryData && categoryData.length > 1 ? (
                 <div className='category-menu'>
                     {categoryData.map((category, index) => (
                         <p className='category-name' key={`${category.id}_${index}`} onClick={() => handleCategoryClick(index)}>
@@ -251,57 +260,63 @@ const ShopItems = () => {
                         </p>
                     ))}
                 </div>
+            ) : (
+                <div className='category-menu2'></div>
             )}
-                            
-                <div className='shop-items-wrapper'>
+
+            <div className='shop-items-wrapper'>
 
 
-                    {transformedData.filter(item=>item.category===selectedCategory).map((item, index) => (
-                        
-                        <div className='shop-item' key={index} >
-                            <div className='shop-img-div'>
-                                <img src={item.Image} alt={item.ime} className='shop-item-img' onClick={() => handleImageClick(item)}/>
-                                {item.popust !== "0" && <div className='popust'>-{item.popust}%</div>}
+                {transformedData.filter(item => item.category === selectedCategory).map((item, index) => (
 
-                            </div>
-                            
-                            <p className='beer-name'>{item.ime}</p>
-                            <p className='beer-description'>{item.podnaslov}</p>
-
-
-
-                            <div className={`beer-drop-down ${selectedItemIndex === index ? 'show-dropdown' : ''}`} onClick={() => toggleDropDown(index)}>
-                                <div className='drop-down-row'>
-                                    <div className='dropdown-title'>{item.cena[selectedItems[index]].name}</div>
-                                    <div className='drop-down-arrow'>
-                                        <i className="arrow down"></i>
-                                    </div>
-                                </div>
-                                {/*{selectedItemIndex === index && (*/}
-                                <div className={`drop-down-menu ${selectedItemIndex === index ? 'show-dropdown' : ''}`}>
-                                    {item.cena.map((item, subIndex) => (
-                                        <div key={subIndex} onClick={() => handleDropDownHover(index, subIndex)}>
-                                            <p className='item-name'>{item.name}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                                {/*} )}*/}
-                            </div>
-                            <p className='beer-price'>{item.cena[selectedItems[index]].price}€</p>
-
-
-
-                            <button className='add-to-cart-button' onClick={() => handleAddToCart(item,selectedItems[index])}>{t('addCart')}</button>
+                    <div className='shop-item' key={index} >
+                        <div className='shop-img-div'>
+                            <img src={item.Image} alt={item.ime} className='shop-item-img' onClick={() => handleImageClick(item)} />
+                            {item.popust !== "0" && <div className='popust'>-{item.popust}%</div>}
+                            {item.navoljo === 0 && <div className='ninavoljo'>{t('nizaloge')}</div>}
                         </div>
-                    ))}
 
-                </div>
+                        <p className='beer-name'>{item.ime}</p>
+                        <p className='beer-description'>{item.podnaslov}</p>
 
 
+
+                        <div className={`beer-drop-down ${selectedItemIndex === index ? 'show-dropdown' : ''}`} onClick={() => toggleDropDown(index)}>
+                            <div className='drop-down-row'>
+                                <div className='dropdown-title'>{item.cena[selectedItems[index]].name}</div>
+                                <div className='drop-down-arrow'>
+                                    <i className="arrow down"></i>
+                                </div>
+                            </div>
+                            {/*{selectedItemIndex === index && (*/}
+                            <div className={`drop-down-menu ${selectedItemIndex === index ? 'show-dropdown' : ''}`}>
+                                {item.cena.map((item, subIndex) => (
+                                    <div key={subIndex} onClick={() => handleDropDownHover(index, subIndex)}>
+                                        <p className='item-name'>{item.name}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            {/*} )}*/}
+                        </div>
+                        <p className='beer-price'>{item.cena[selectedItems[index]].price}€</p>
+
+
+
+                        <button className='add-to-cart-button' onClick={() => handleAddToCart(item, selectedItems[index])}   disabled={item.navoljo === 0}>{t('addCart')}</button>
+                    </div>
+                ))}
+
+            </div>
+
+                                    
         </div >
+
+        {transformedData.length > 0 && showFooter && <Footer />}
+
+        </>
     )
 }
 
 
 
-  export default ShopItems;
+export default ShopItems;

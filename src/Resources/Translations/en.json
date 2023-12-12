@@ -32,7 +32,7 @@
     "surname": "SURNAME",
     "street": "STREET AND HOUSE NUMBER",
     "country": "COUNTRY",
-    "countryError": "To ship outside Slovenia, please contact us at our email address info@jashabrewing.com or by phone at 031 222 223.",
+    "countryError": "To ship outside Slovenia, please contact us at our email address info@jashabrewing.com or by phone at +386 (0)31 222 223.",
     "postnast": "POSTAL CODE",
     "mesto": "CITY",
     "email": "E-MAIL",
@@ -46,7 +46,66 @@
     "placilo": "Payment",
     "partial": "Partial amount",
     "full": "Amount",
-    "buy": "Buy now"
+    "buy": "Buy now",
+    "fillAllFields": "Please fill in your data",
+    "emailsDontMatch": "The emails don't match",
+    "potrjeno": "Order confirmed",
+    "epotrjeno": "The order details have been sent to your email. If you haven't received the message in 5 minutes, please contact us.",
+    "backshop": "Back to the store",
+    "pogoji": "Terms of business",
+    "izdelal": "Made by:",
+    "pogoji-capital": "TERMS AND CONDITIONS",
+    "pogoji-opis": "The general terms and conditions of the JashaBrewing website are drafted in accordance with the Consumer Protection Act (ZVPot), with recommendations from the Chamber of Commerce and Industry of Slovenia (GZS), and in line with international codes for e-commerce. The website is an information system designed for the presentation and sale of products to the user. It is operated by the company JashaBrewing d.o.o., with its registered office at Lendavsko naselje 1, 9000 Murska Sobota. The user is an individual who uses our system, i.e., a product subscriber.",
+    "dostopnost-informacij": "ACCESSIBILITY OF INFORMATION",
+    "dostopnost-opis": "The provider undertakes to always provide the customer with the following information: the identity of the company, contact addresses, essential characteristics of goods or services, product availability, conditions of product delivery or service execution, all prices clearly and unambiguously specified, payment and delivery methods, the time validity of the offer, the deadline for withdrawing from the contract, and the conditions for withdrawal, as well as an explanation of the complaint procedure, including all contact person or customer service information.",
+    "nacin-placila": "PAYMENT METHODS",
+    "naslednje": "The provider enables the following payment methods:",
+    "popovzetju": "- cash on delivery",
+    "skartico": "- with credit card",
+    "veljavnost": "VALIDITY OF THE OFFER AND PRICES",
+    "veljavnostp": "The prices listed on the website are final and apply only when ordering online; therefore, there may be deviations in prices between the online store and other stores in Slovenia. Prices are valid for payment with the above-mentioned payment methods, under the above-mentioned conditions. Orders and customer invoices are stored at the company's headquarters and are accessible to customers upon a written request.",
+    "veljavnostp1":"The request for a duplicate can be sent by the customer in written form to the company's address or to the email address info@jashabrewing.com. The validity periods of promotions are stated alongside the respective promotional offer, and they may vary.",
+    "vracilo": "RETURN OF GOODS",
+    "vracilo1":"Individuals can return products purchased on JashaBrewing.com within 15 days of receiving them to the business address of JashaBrewing d.o.o. Alternatively, they can inform us of their intention to return the goods in writing within 15 days of receiving the product, sending the notice to the email address info@jashabrewing.com. In the latter case, the buyer must return the undamaged goods to our address within the next 15 days.",
+    "vracilo2":"In cases where the order is placed by a legal or natural person engaged in economic activity, regardless of its legal organizational form or ownership, the provisions of this chapter do not apply. Your requests for product returns in these cases will be treated individually, taking into account to the greatest extent possible all reasons, circumstances, and possibilities provided to us by our suppliers.",
+    "zavrnitev": "EXECUTION OR REJECTION OF AN ORDER",
+    "zavrnitev1": "JashaBrewing.com will commence activities necessary for the execution of accepted orders as soon as possible. Within 48 hours, we will inform you of the order summary and confirmation through an email to your provided electronic address. JashaBrewing d.o.o. reserves the right to reject an order if it determines that it cannot be fulfilled under the specified conditions.",
+    "dobava":"DELIVERY TIME",
+    "dobava1": "Delivery times are expressed in the number of business days, specifically 3 to 5 business days from the receipt of payment confirmation.",
+    "dostavaa": "DELIVERY",
+    "dostavaa1": "We deliver orders through the postal service Pošta Slovenija.",
+    "uporaba": "USE",
+    "uporaba1": "The products are intended for adults aged 18 and older. If you have children, store them in a place where they cannot reach them.",
+    "pravica": "RIGHT TO PRIVACY",
+    "pravica1": "The provider undertakes to permanently protect all personal data in accordance with the Personal Data Protection Act (Official Gazette of the Republic of Slovenia, No. 86/2004) and the Insurance Act. All data obtained through the jashabrewing.com website will be used exclusively for sending informational materials and other necessary communication.",
+    "pritozbe": "COMPLAINTS AND CLAIMS",
+    "pritozbe1":"The provider respects the applicable consumer protection legislation. Complaints and claims can be sent by customers via email to info@jashabrewing.com. The provider must confirm within five working days that they have received the complaint, inform the customer how long it will be processed, and keep them informed throughout the process. The provider strives to the best of their ability to resolve any disputes amicably.",
+    "avtorske": "COPYRIGHT",
+    "avtorske1": "All texts and photos on the pages and subpages of the domain JashaBrewing.com are the property of JashaBrewing d.o.o., its partners, and suppliers, and may not be copied or reproduced without explicit permission.",
+    "nestrinjanje": "You must agree to the terms of use.",
+    "strinjanje": "I accept",
+    "strinjanje1": "terms of use",
+    "nizaloge": "Out of stock",
+    "treshold": "For orders over",
+    "brezplacno": "the shipping is free",
+    "kmalu": "COMING SOON"
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
 
 
 

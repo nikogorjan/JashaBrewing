@@ -1,27 +1,65 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./BreweryDesign.css"
 import brewery1 from "../../../../Resources/Images/brewery1.png"
 import brewery2 from "../../../../Resources/Images/brewery2.png"
 import brewery3 from "../../../../Resources/Images/brewery3.png"
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { Buffer } from 'buffer';
 
 const BreweryDesign = () => {
     const { t } = useTranslation();
+    const [pubImage1, setPubImage1] = useState();
+    const [pubImage2, setPubImage2] = useState();
+    const [pubImage3, setPubImage3] = useState();
 
     const revealItems = () => {
         const shopItems = document.querySelectorAll('.pub-row');
         shopItems.forEach(item => {
             item.classList.add('revealBreweryItem');
         });
-
+        
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const pubImagesResponse = await axios.get('https://api.jashabrewing.com/BreweryData');
+
+                if (pubImagesResponse.data && pubImagesResponse.data.length > 0) {
+                    const [pubImageData] = pubImagesResponse.data;
+    
+                    // Convert blob to base64 for each image
+                    if (pubImageData.image1) {
+                        const base64Image1 = Buffer.from(pubImageData.image1, 'binary').toString('base64');
+                        setPubImage1(`data:image/jpeg;base64,${base64Image1}`);
+                    }
+    
+                    if (pubImageData.image2) {
+                        const base64Image2 = Buffer.from(pubImageData.image2, 'binary').toString('base64');
+                        setPubImage2(`data:image/jpeg;base64,${base64Image2}`);
+                    }
+    
+                    if (pubImageData.image3) {
+                        const base64Image3 = Buffer.from(pubImageData.image3, 'binary').toString('base64');
+                        setPubImage3(`data:image/jpeg;base64,${base64Image3}`);
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, [pubImage1,pubImage2,pubImage3]); // Empty dependency array to run once on mount
 
     useEffect(() => {
         setTimeout(()=>{
             revealItems();
 
         },100)
-    },[])
+    },[pubImage1,pubImage2,pubImage3])
 
   return (
     <div className='pub-design-main'>
@@ -34,12 +72,12 @@ const BreweryDesign = () => {
                 </div>
             </div>
             <div className='pub-row-right'>
-                <img src={brewery1} alt='Pub' className='pub-img' />
+                <img src={pubImage1} alt='Pub' className='pub-img' />
             </div>
         </div>
         <div className='pub-row'>
             <div className='pub-row-left'>
-                <img src={brewery2} alt='Food' className='pub-img' />
+                <img src={pubImage2} alt='Food' className='pub-img' />
             </div>
             <div className='pub-row-right'>
                 <div className='pub-description'>
@@ -56,7 +94,7 @@ const BreweryDesign = () => {
                 </div>
             </div>
             <div className='pub-row-right'>
-                <img src={brewery3} alt='Party' className='pub-img' />
+                <img src={pubImage3} alt='Party' className='pub-img' />
             </div>
         </div>
     </div>

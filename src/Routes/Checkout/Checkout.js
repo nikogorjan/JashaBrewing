@@ -9,9 +9,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import cashIcon from '../../Resources/Images/cash-icon.png'
 import creditCardIcon from '../../Resources/Images/credit-card-icon.png'
 import Payment from '../../Payments/Payment';
-import { updateShippingCost,updatePlaciloOption,updateCustomerPhone,updateCustomerName,updateCustomerSurname,updateCustomerUlica,updateCustomerPost,updateCustomerCity,updateCustomerEmail  } from '../../StateManagement/reducers'; // Import your removeFromCart action
+import { updateShippingCost, updatePlaciloOption, updateCustomerPhone, updateCustomerName, updateCustomerSurname, updateCustomerUlica, updateCustomerPost, updateCustomerCity, updateCustomerEmail, updateConfirmEmail, togglePogoji,updatePurchaseId,updateSuperId,setPogojiToTrue  } from '../../StateManagement/reducers'; // Import your removeFromCart action
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import Footer from '../Footer/Footer';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const Checkout = () => {
@@ -37,30 +39,70 @@ const Checkout = () => {
 
     const [option3Checked, setOption3Checked] = useState(true); // Initial state for the first checkbox
     const [option4Checked, setOption4Checked] = useState(false); // Initial state for the second checkbox
-    const cartData= useSelector((state) => state.cart); // Get cart items from Redux store
-    const navigate = useNavigate();
-    useEffect(() => {
-        if(shippingCost===0){
 
-        }else{
+    const [option5Checked, setOption5Checked] = useState(true); // Initial state for the second checkbox
+
+    const cartData = useSelector((state) => state.cart); // Get cart items from Redux store
+    const navigate = useNavigate();
+
+    const [isFormComplete, setIsFormComplete] = useState();
+    const [emailsMatch, setEmailsMatch] = useState();
+    const [nestrinjanje, setNestrinjanje] = useState();
+    const [shippingTreshold, setshippingTreshold] = useState("0");
+
+
+
+    useEffect(() => {
+        if (shippingCost === 0) {
+
+        } else {
             setShippingVal(shippingCost)
         }
-        
-      }, [shippingCost]);
 
-      useEffect(() => {
+    }, [shippingCost]);
+
+    const getShippingTresholdData = async () => {
+        try {
+            const response = await axios.get('https://api.jashabrewing.com/ShippingTresholdData');
+            setshippingTreshold(response.data);
+        } catch (error) {
+            console.error('Error fetching AdminData:', error);
+        }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await getShippingTresholdData();
+        };
+        fetchData();
+
+        dispatch(setPogojiToTrue());
+    }, []);
+
+    const cartTotalPrice = cartItems.reduce((total, item) => {
+        const itemPrice = parseFloat(item.cena.price) * item.quantity;
+        return total + itemPrice;
+    }, 0);
+
+    useEffect(() => {
         // Fetch shipping data
-        axios.get("http://localhost:3000/ShippingData")
-          .then(response => {
-            // Update shipping cost in Redux state
-            const shippingCost = response.data[0].value * 100; // Convert to cents
-            setShippingValData(shippingCost)
-            dispatch(updateShippingCost(shippingCost));
-          })
-          .catch(error => {
-            console.error('Error fetching shipping data:', error);
-          });
-      }, [dispatch]);
+        axios.get("https://api.jashabrewing.com/ShippingData")
+            .then(response => {
+                const shippingCost = response.data[0].value * 100; // Convert to cents
+
+                // Compare cart total with shipping threshold
+                if (cartTotalPrice >= parseFloat(shippingTreshold[0].treshold)) {
+                    // If cart total is greater than or equal to the threshold, update shipping cost to 0
+                    dispatch(updateShippingCost(0));
+                } else {
+                    // Otherwise, update shipping cost based on the fetched data
+                    dispatch(updateShippingCost(shippingCost));
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching shipping data:', error);
+            });
+    }, [dispatch, cartTotalPrice, shippingTreshold]);
 
 
     const handleOption1Change = () => {
@@ -69,14 +111,14 @@ const Checkout = () => {
         const newShippingCost = shippingValData; // Set the desired shipping cost when option1 is checked
 
         dispatch(updateShippingCost(newShippingCost));
-      };
-      
-      const handleOption2Change = () => {
+    };
+
+    const handleOption2Change = () => {
         setOption1Checked(false);
         setOption2Checked(true);
         const newShippingCost = 0; // Set the desired shipping cost when option2 is checked
         dispatch(updateShippingCost(newShippingCost));
-      };
+    };
 
     const handleOption3Change = () => {
         setOption3Checked(true);
@@ -92,15 +134,26 @@ const Checkout = () => {
 
     };
 
-    useEffect(()=>{
-        if(option3Checked){
+    const handleOption5Change = () => {
+        if (option5Checked === false) {
+            setOption5Checked(true)
+        } else {
+            setOption5Checked(false)
+
+        }
+        dispatch(togglePogoji());
+
+    }
+
+    useEffect(() => {
+        if (option3Checked) {
             dispatch(updatePlaciloOption('Placilo po povzetju'));
 
-        }else{
+        } else {
             dispatch(updatePlaciloOption('Kreditna kartica'));
 
         }
-    },[])
+    }, [])
 
 
     const handleCountryChange = (val) => {
@@ -152,72 +205,81 @@ const Checkout = () => {
 
     const handleEmailConfirmChange = (event) => {
         setCustomerEmailConfirm(event.target.value);
+        dispatch(updateConfirmEmail(event.target.value)); // Dispatch the action to update customerPhone
 
     };
 
     const totalPricee = cartItems.reduce((total, item) => {
         const itemPrice = parseFloat(item.cena.price) * item.quantity;
         return total + itemPrice;
-      }, 0);
+    }, 0);
 
-      const sendEmailToServer = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    to: cartData.customerEmail, // replace with the recipient's email
-                    subject: 'Potrdilo plačila',
-                    text: 'Hvala za vaš nakup. V priponki vam pošiljamo podatke vašega naročila.',
-                    cartData, // Include cartData separately
 
-                }),
-            });
+    const buyPoPovzetju = async () => {
+        const formComplete =
+            customerPhone.trim() !== '' &&
+            customerName.trim() !== '' &&
+            customerSurname.trim() !== '' &&
+            customerStreet.trim() !== '' &&
+            customerPosta.trim() !== '' &&
+            customerMesto.trim() !== '' &&
+            customerEmail.trim() !== '' &&
+            customerEmailConfirm.trim() !== '';
 
-            if (response.ok) {
-                console.log('Email sent successfully');
+        const emailMatch = customerEmail === customerEmailConfirm;
+
+
+
+        if (formComplete) {
+            if (!emailMatch) {
+                setEmailsMatch(false);
+                console.log('Emails not matching.');
             } else {
-                console.error('Error sending email:', response.statusText);
+                if (option5Checked === false) {
+                    setNestrinjanje(false)
+                } else {
+                    navigate("/completion");
+                }
             }
-        } catch (error) {
-            console.error('Error sending email:', error);
+        } else {
+            // Display a message or handle incomplete form case
+            setIsFormComplete(false);
+            console.log('Please fill in all required fields.');
         }
-    };
-
-    const sendEmailToAdmin = async () => {
-        try {
-
-
-            const response = await fetch('http://localhost:3000/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    to: 'niko.gorjan@gmail.com', // replace with the admin's email
-                    subject: 'Nov nakup',
-                    text: `Prejeli ste novo naročilo.`, // Include cartData in the email text
-                    cartData, // Include cartData separately
-
-                }),
-            });
-
-            if (response.ok) {
-                console.log('Admin email sent successfully');
-            } else {
-                console.error('Error sending admin email:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error sending admin email:', error);
-        }
-    };
-
-    const buyPoPovzetju=()=>{
-        navigate("/completion")
     }
 
+    const goPogoji = () => {
+        navigate("/Terms")
+    }
+
+    useEffect(() => {
+        // Generate a random ID using uuid
+        const randomId = uuidv4();
+        const randomId2 = uuidv4();
+
+        // Dispatch the updatePurchaseId action with the random ID
+        dispatch(updatePurchaseId(randomId));
+        dispatch(updateSuperId(randomId2));
+
+      }, [dispatch]);
+
+    
+
+    useEffect(() => {
+        const validAge = sessionStorage.getItem('validAge');
+        if (validAge !== 'true') {
+            // If validAge is not true, redirect the user back to the home page
+            navigate('/');
+        }
+    }, [navigate]);
+
+    // If validAge is not true, do not render the Shop component
+    const validAge = sessionStorage.getItem('validAge');
+    if (validAge !== 'true') {
+        return null; // or return a component indicating the user needs to go back to the home page
+    }
+
+   
 
     return (
         <div className='checkout-main'>
@@ -371,7 +433,7 @@ const Checkout = () => {
                             {country === 'Slovenia' ? (
                                 <>
                                     <h1 className='customers-header header2'>{t('narocilo')}</h1>
-                        
+
 
                                     <p className='dostava-paragraph'>{t('placilo')}</p>
 
@@ -411,30 +473,44 @@ const Checkout = () => {
                                     </div>
                                     <div className='partial-znesek'>
                                         <p className='parial-paragraph'>{t('dostava')}</p>
-                                        <div className='final-price2'>{(shippingCost/100).toFixed(2)}€</div>
+                                        <div className='final-price2'>{(shippingCost / 100).toFixed(2)}€</div>
 
                                     </div>
                                     <div className='checkout-horizontal-divider2'></div>
 
                                     <div className='partial-znesek'>
                                         <p className='parial-paragraph3'>{t('full')}</p>
-                                        <div className='final-price3'>{(totalPricee + (shippingCost/100)).toFixed(2)}€</div>
+                                        <div className='final-price3'>{(totalPricee + (shippingCost / 100)).toFixed(2)}€</div>
 
                                     </div>
 
+                                    <div className='pogoji-poslovanja-div'>
+                                        <input
+                                            type='checkbox'
+                                            id='dostavaOption3'
+                                            checked={option5Checked}
+                                            onChange={handleOption5Change}
+                                        />
+                                        <p className='pogoji-paragraph'>{t('strinjanje')}</p>
+                                        <p className='pogoji-paragraph-underline' onClick={goPogoji}>{t('strinjanje1')}</p>
+                                    </div>
+
                                     {option3Checked === true ? (
-                                    <button className='buy-button' onClick={buyPoPovzetju}>{t('buy')}</button>
+                                        <>
+                                            <button className='buy-button' onClick={buyPoPovzetju}>{t('buy')}</button>
+                                            {isFormComplete === false && <p className='error-message'>{t('fillAllFields')}</p>}
+                                            {emailsMatch === false && <p className='error-message'>{t('emailsDontMatch')}</p>}
+                                            {nestrinjanje === false && <p className='error-message'>{t('nestrinjanje')}</p>}
 
-                                    ):(
-                                        <Payment/>
-
+                                        </>) : (
+                                        <Payment />
                                     )}
 
-                                    
+
                                 </>
                             ) :
                                 <div className='missed-country'>
-                                    <p className='error-country'>{t('countryError')} *</p>
+                                    {/*<p className='error-country'>{t('countryError')} *</p>*/}
 
                                 </div>
                             }
@@ -448,7 +524,7 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
-
+            <Footer />
         </div>
     )
 }

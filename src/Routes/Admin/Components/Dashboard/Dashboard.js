@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Dashboard.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
 
 
 
@@ -15,7 +16,7 @@ const Dashboard = () => {
 
   const getCategoryData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/CategoryData');
+      const response = await axios.get('https://api.jashabrewing.com/CategoryData');
       setCategoryData(response.data);
     } catch (error) {
       console.error('Error fetching AdminData:', error);
@@ -30,10 +31,7 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log("categoryData")
-    console.log(categoryData)
-  }, [categoryData]);
+  
 
   const handleAddCategoryClick = () => {
     const addCategoryOverlay = document.querySelector('.add-category-overlay');
@@ -52,7 +50,6 @@ const Dashboard = () => {
       nameEng: newCategoryNameEng
       // Add other properties as needed
     };
-    console.log("adding: " + newCategoryNameEng)
 
     // Update categoryData state with the new category
     setCategoryData((prevCategoryData) => [...prevCategoryData, newCategory]);
@@ -66,7 +63,7 @@ const Dashboard = () => {
   const saveCategoryData = async () => {
     try {
       // Send a POST request to your server with categoryData
-      await axios.post('http://localhost:3000/SaveCategoryData', { categoryData });
+      await axios.post('https://api.jashabrewing.com/SaveCategoryData', { categoryData });
       console.log('Category data saved successfully!');
     } catch (error) {
       console.log('Error details:', error.response); // Log the detailed error response
@@ -76,20 +73,17 @@ const Dashboard = () => {
 
   const handleSaveCategoryClick = () => {
     // Call the saveCategoryData function when the "SHRANI" button is clicked
-    console.log("sending: " + categoryData);
     saveCategoryData();
   };
 
   const handleCategoryClick = (category) => {
     // Handle category click
-    console.log("category click")
     navigate(`/Items/${category.name}`, { state: { category } });
 
 
   };
   
   const handleMenuBarClick = (e, category) => {
-    console.log("icon click")
     e.stopPropagation();
 
     const updatedCategoryData = categoryData.filter((item) => item !== category);
@@ -100,8 +94,9 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard-main'>
+      <AdminNavbar/>
       <div className='dashboard-wrapper'>
-      <h1 className='items-header'>DASHBOARD</h1>
+      <h1 className='items-header'>TRGOVINA</h1> 
         <div className='buttons-row'>
           <button className='add-category-button' onClick={handleAddCategoryClick}>DODAJ MENI</button>
           <button className='save-category-button' onClick={handleSaveCategoryClick}>SHRANI</button>

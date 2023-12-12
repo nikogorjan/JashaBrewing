@@ -14,7 +14,7 @@ const Payment = () => {
     const shippingCost = useSelector((state) => state.cart.shippingCost);
 
     useEffect(() => {
-        fetch("http://localhost:3000/config").then(async (r) => {
+        fetch("https://api.jashabrewing.com/config").then(async (r) => {
             const { publishableKey } = await r.json();
             setStripePromise(loadStripe(publishableKey));
 
@@ -31,7 +31,7 @@ const Payment = () => {
         // Update the total amount by adding the shipping cost
         const totalAmountWithShipping = totalAmountInCents + shippingCost;
 
-        fetch("http://localhost:3000/create-payment-intent", {
+        fetch("https://api.jashabrewing.com/create-payment-intent", {
             method: "POST",
             body: JSON.stringify({ amount: totalAmountWithShipping }),
             headers: {
